@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RB - AI Intelligence Solutions</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#8b5cf6',
+          secondary: '#a855f7',
+          dark: '#0f0f15',
+        },
+        borderRadius: {
+          'none': '0px',
+          'sm': '4px',
+          DEFAULT: '8px',
+          'md': '12px',
+          'lg': '16px',
+          'xl': '20px',
+          '2xl': '24px',
+          '3xl': '32px',
+          'full': '9999px',
+          'button': '8px'
+        }
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+  :where([class^="ri-"])::before { content: "\f3c2"; }
+  body { 
+    font-family: 'Inter', sans-serif;
+    background-color: #0f0f15;
+    color: white;
+  }
+  .glow-border { 
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); 
+  }
+  .particle-bg { 
+    background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 20%), 
+                radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 20%), 
+                radial-gradient(circle at 40% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 20%); 
+  }
+  .neon-text { 
+    text-shadow: 0 0 10px rgba(139, 92, 246, 0.5); 
+  }
+  .floating { 
+    animation: floating 3s ease-in-out infinite; 
+  }
+  @keyframes floating { 
+    0%, 100% { transform: translateY(0px); } 
+    50% { transform: translateY(-10px); } 
+  }
+  .pulse-glow { 
+    animation: pulse-glow 2s ease-in-out infinite alternate; 
+  }
+  @keyframes pulse-glow { 
+    from { box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); } 
+    to { box-shadow: 0 0 30px rgba(139, 92, 246, 0.8); } 
+  }
+  .bg-primary { 
+    transition: all 0.3s ease; 
+  }
+  .bg-primary:hover { 
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.8); 
+    transform: translateY(-2px); 
+  }
+  .hero-gradient {
+    background: linear-gradient(135deg, rgba(11, 11, 25, 0.9) 0%, rgba(35, 15, 60, 0.7) 100%);
+  }
+  .feature-card {
+    backdrop-filter: blur(10px);
+    background: rgba(20, 20, 30, 0.6);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  }
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);
+    border-color: rgba(139, 92, 246, 0.5);
+  }
+  .scroll-hidden {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scroll-hidden::-webkit-scrollbar {
+    display: none;
+  }
+  .gradient-text {
+    background: linear-gradient(90deg, #8b5cf6 0%, #a855f7 50%, #c084fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+</style>
+</head>
+<body class="overflow-x-hidden">
+  <!-- Navigation -->
+  <nav class="w-full bg-dark/90 backdrop-blur-sm border-b border-purple-500/20 fixed top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between"> 
+      <div class="font-['Pacifico'] text-2xl text-primary">RB</div>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="text-gray-300 hover:text-primary transition-colors nav-link">Home</a>
+        <a href="#features" class="text-gray-300 hover:text-primary transition-colors nav-link">Features</a>
+        <a href="#solutions" class="text-gray-300 hover:text-primary transition-colors nav-link">Solutions</a>
+        <a href="#about" class="text-gray-300 hover:text-primary transition-colors nav-link">About</a>
+        <a href="#contact" class="text-gray-300 hover:text-primary transition-colors nav-link">Contact</a>
+      </div> 
+      <button class="bg-primary hover:bg-purple-600 px-6 py-2 !rounded-button text-white font-medium whitespace-nowrap transition-all hover:scale-105 active:scale-95">
+        Learning
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" id="home">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-[url('download.jpg')] bg-cover bg-center opacity-90"></div>
+      <div class="absolute inset-0 hero-gradient"></div>
+      <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-25"></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 py-20">
+      <div class="max-w-2xl">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+          <span class="gradient-text">Revolutionize</span> Your<br>
+          Business with <span class="gradient-text">AI-Driven</span><br>
+          Intelligence
+        </h1>
+        <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+          Our powerful AI tools help automate tasks, extract insights, and scale your operations—faster than ever.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 mb-12">
+          <a href="#project" class="bg-primary hover:bg-purple-600 px-8 py-4 !rounded-button text-white font-semibold whitespace-nowrap transition-all pulse-glow hover:scale-105 active:scale-95">
+            Explore Projects
+          </a>
+          <a href="https://drive.google.com/file/d/1uQoOMKqHXN-ontu513PoPaOVJmEiklnH/view?usp=drive_link" class="border-2 border-primary hover:bg-primary/10 px-8 py-4 !rounded-button text-primary font-semibold whitespace-nowrap transition-all flex items-center gap-2 hover:scale-105 active:scale-95">
+            Download CV
+            <div class="w-5 h-5 flex items-center justify-center">
+              <i class="ri-download-line"></i>
+            </div>
+          </a href="">
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 py-4 overflow-hidden">
+      <div class="relative">
+        <div class="flex items-center gap-8 scroller">
+          <div class="flex items-center gap-3 px-6">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-time-line text-primary"></i>
+            </div>
+            <span class="text-sm font-medium whitespace-nowrap">Real-Time Insight</span>
+          </div>
+          <div class="flex items-center gap-3 px-6">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-line-chart-line text-primary"></i>
+            </div>
+            <span class="text-sm font-medium whitespace-nowrap">Predictive Power</span>
+          </div>
+          <div class="flex items-center gap-3 px-6">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-brain-line text-primary"></i>
+            </div>
+            <span class="text-sm font-medium whitespace-nowrap">Learn & Adapt</span>
+          </div>
+          <div class="flex items-center gap-3 px-6">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-shield-check-line text-primary"></i>
+            </div>
+            <span class="text-sm font-medium whitespace-nowrap">Secure by Design</span>
+          </div>
+          <div class="flex items-center gap-3 px-6">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-chat-3-line text-primary"></i>
+            </div>
+            <span class="text-sm font-medium whitespace-nowrap">Human-Like Chat</span>
+          </div>
+          <div class="flex items-center gap-3 px-6">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-mic-line text-primary"></i>
+            </div>
+            <span class="text-sm font-medium whitespace-nowrap">Voice-to-Text AI</span>
+          </div>
+          <!-- Duplicate for infinite scroll -->
+          <div class="flex items-center gap-3 px-6">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-time-line text-primary"></i>
+            </div>
+            <span class="text-sm font-medium whitespace-nowrap">Real-Time Insight</span>
+          </div>
+          <div class="flex items-center gap-3 px-6">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-line-chart-line text-primary"></i>
+            </div>
+            <span class="text-sm font-medium whitespace-nowrap">Predictive Power</span>
+          </div>
+          <div class="flex items-center gap-3 px-6">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-brain-line text-primary"></i>
+            </div>
+            <span class="text-sm font-medium whitespace-nowrap">Learn & Adapt</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-dark">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">AI Solutions Tailored for <span class="gradient-text">Real-World Impact</span></h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-primary to-purple-400 mx-auto"></div>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="feature-card p-8 rounded-xl glow-border group">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-settings-3-line text-white text-xl"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-primary">Smart Automation</h3>
+          <p class="text-gray-400 leading-relaxed">Streamline workflows with intelligent automation that adapts to your business processes and executes operations.</p>
+        </div>
+        <div class="feature-card p-8 rounded-xl glow-border group">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-eye-line text-white text-xl"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-primary">Predictive Insights</h3>
+          <p class="text-gray-400 leading-relaxed">Leverage machine learning to predict outcomes and optimize decisions with data-driven insights.</p>
+        </div>
+        <div class="feature-card p-8 rounded-xl glow-border group">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-chat-4-line text-white text-xl"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-primary">Conversational AI</h3>
+          <p class="text-gray-400 leading-relaxed">Deploy human-like interactions across channels and support customers with natural language processing.</p>
+        </div>
+        <div class="feature-card p-8 rounded-xl glow-border group">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <div class="w-8 h-8 flex items-center justify-center">
+              <i class="ri-shield-star-line text-white text-xl"></i>
+            </div>
+          </div>
+          <h3 class="text-xl font-semibold mb-4 text-primary">Enterprise-Grade Security</h3>
+          <p class="text-gray-400 leading-relaxed">Ensure complete data protection with secure algorithms and compliance-ready processes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions Section -->
+  <section id="solutions" class="py-20 bg-gradient-to-b from-dark to-[#0a0a12]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="relative">
+          <div class="relative w-full h-96 rounded-2xl overflow-hidden">
+            <img src="download (2).jpg" 
+                 alt="AI Solutions" 
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/30 to-transparent"></div>
+          </div>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="grid grid-cols-2 gap-4 floating">
+              <div class="bg-primary/20 border border-primary/50 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">Computer Vision</div>
+              <div class="bg-primary/20 border border-primary/50 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">AI Strategy</div>
+              <div class="bg-primary/20 border border-primary/50 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">Custom AI Development</div>
+              <div class="bg-primary/20 border border-primary/50 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">Ongoing Support</div>
+              <div class="bg-primary/20 border border-primary/50 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">AI Integration</div>
+              <div class="bg-primary/20 border border-primary/50 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">Deep Learning</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="text-sm text-primary font-semibold mb-4 uppercase tracking-wider">What We Do</div>
+          <h2 class="text-4xl font-bold mb-6">Future-ready AI for today's challenges.</h2>
+          <p class="text-gray-400 text-lg leading-relaxed mb-8">
+            We specialize in creating adaptive and scalable AI solutions that address complex business challenges. Whether it's automating repetitive tasks, extracting insights from data, or building intelligent systems, we deliver measurable impact now.
+          </p>
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <div class="w-4 h-4 flex items-center justify-center">
+                  <i class="ri-check-line text-white text-sm"></i>
+                </div>
+              </div>
+              <span class="font-medium">Computer Vision</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <div class="w-4 h-4 flex items-center justify-center">
+                  <i class="ri-check-line text-white text-sm"></i>
+                </div>
+              </div>
+              <span class="font-medium">AI Integration</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <div class="w-4 h-4 flex items-center justify-center">
+                  <i class="ri-check-line text-white text-sm"></i>
+                </div>
+              </div>
+              <span class="font-medium">AI Strategy</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <div class="w-4 h-4 flex items-center justify-center">
+                  <i class="ri-check-line text-white text-sm"></i>
+                </div>
+              </div>
+              <span class="font-medium">Ongoing Support</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                <div class="w-4 h-4 flex items-center justify-center">
+                  <i class="ri-check-line text-white text-sm"></i>
+                </div>
+              </div>
+              <span class="font-medium">Custom AI Development</span>
+            </div>
+          </div>
+          <button class="bg-primary hover:bg-purple-600 px-8 py-4 !rounded-button text-white font-semibold whitespace-nowrap transition-all pulse-glow hover:scale-105 active:scale-95">
+            Contact Us
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-dark/50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="text-sm text-primary font-semibold mb-4 uppercase tracking-wider">About Us</div>
+        <h2 class="text-4xl font-bold mb-6">Empowering Businesses with <span class="gradient-text">Smart, Scalable AI</span></h2>
+        <p class="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto">
+          We are a cutting-edge AI service provider dedicated to transforming businesses through intelligent automation, data-driven insights, and scalable machine learning solutions.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 mb-16">
+        <div class="text-center">
+          <div class="text-5xl font-bold text-primary mb-2 neon-text">500+</div>
+          <div class="text-gray-400">Hours saved via automation</div>
+        </div>
+        <div class="text-center">
+          <div class="text-5xl font-bold text-primary mb-2 neon-text">100% Automation</div>
+          <div class="text-gray-400">AI projects delivered</div>
+        </div>
+        <div id="project" class="text-center">
+          <div class="text-5xl font-bold text-primary mb-2 neon-text">100%</div>
+          <div class="text-gray-400">Secured Ai Projects</div>
+        </div>
+      </div>
+      <div  class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="feature-card p-6 rounded-xl">
+          <div class="w-12 h-12 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-4">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-shirt-line text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-semibold mb-2 text-primary">Attire Detection</h3>
+          <p class="text-gray-400 text-sm">Advanced deep learning models for real-time clothing and uniform recognition systems.</p>
+        </div>
+        <div class="feature-card p-6 rounded-xl">
+          <div class="w-12 h-12 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-4">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-map-pin-line text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-semibold mb-2 text-primary">Geolocation Mapping</h3>
+          <p class="text-gray-400 text-sm">Mapping Excel sheet data onto real-time geolocation maps with intelligent visualization.</p>
+        </div>
+        <div class="feature-card p-6 rounded-xl">
+          <div class="w-12 h-12 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-4">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-robot-line text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-semibold mb-2 text-primary">Automation Bots</h3>
+          <p class="text-gray-400 text-sm">Building intelligent automation bots for complex data processing and workflow tasks.</p>
+        </div>
+        <div class="feature-card p-6 rounded-xl">
+          <div class="w-12 h-12 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-4">
+            <div class="w-6 h-6 flex items-center justify-center">
+              <i class="ri-code-line text-white"></i>
+            </div>
+          </div>
+          <h3 class="font-semibold mb-2 text-primary">PyTorch & Python</h3>
+          <p class="text-gray-400 text-sm">Learning and implementing advanced machine learning models using PyTorch and Python.</p>
+        </div>
+      </div>
+      <div class="text-center mt-12">
+        <button class="bg-primary hover:bg-purple-600 px-8 py-4 !rounded-button text-white font-semibold whitespace-nowrap transition-all pulse-glow hover:scale-105 active:scale-95">
+          Learn More
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gradient-to-b from-[#0a0a12] to-dark">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-4xl font-bold mb-6">Ready to <span class="gradient-text">Transform</span> Your Business?</h2>
+          <p class="text-gray-400 text-lg leading-relaxed mb-8">
+            Get in touch with our team to discuss how our AI solutions can help you achieve your business goals.
+          </p>
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                <i class="ri-mail-line text-primary text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-gray-400 text-sm">Email</h4>
+                <a href="mailto:rohitbisht1233@gmail.com" class="font-medium hover:text-primary transition-colors">rohitbisht1233@gmail.com</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                <i class="ri-phone-line text-primary text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-gray-400 text-sm">Phone</h4>
+                <a href="tel:+916398720297" class="font-medium hover:text-primary transition-colors">+91 6398720297</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                <i class="ri-map-pin-line text-primary text-xl"></i>
+              </div>
+              <div>
+                <h4 class="text-gray-400 text-sm">Location</h4>
+                <p class="font-medium">Delhi, India</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-dark/50 border border-purple-500/20 rounded-xl p-8 glow-border">
+          <h3 class="text-2xl font-bold mb-6">Send us a message</h3>
+  <!-- Thank You Message (hidden by default) -->
+  <div id="thankyouBox" class="fixed top-5 right-5 bg-purple-700 text-white px-6 py-4 rounded-lg shadow-lg hidden">
+    Thank you! Your message has been sent.
+  </div>
+
+  <!-- Contact Form -->
+  <form id="contactForm" action="https://formsubmit.co/rohitbisht1233@gmail.com" method="POST" class="space-y-6 w-full max-w-2xl bg-gray-800 p-8 rounded-xl">
+    <!-- Required Hidden Fields for FormSubmit -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div>
+        <label for="name" class="block text-gray-400 mb-2">Name</label>
+        <input type="text" id="name" name="name" required class="w-full bg-dark/50 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none">
+      </div>
+      <div>
+        <label for="email" class="block text-gray-400 mb-2">Email</label>
+        <input type="email" id="email" name="email" required class="w-full bg-dark/50 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none">
+      </div>
+    </div>
+
+    <div>
+      <label for="subject" class="block text-gray-400 mb-2">Subject</label>
+      <input type="text" id="subject" name="subject" required class="w-full bg-dark/50 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none">
+    </div>
+
+    <div>
+      <label for="message" class="block text-gray-400 mb-2">Message</label>
+      <textarea id="message" name="message" rows="4" required class="w-full bg-dark/50 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none"></textarea>
+    </div>
+
+    <button type="submit" class="bg-purple-600 hover:bg-purple-700 w-full px-8 py-4 rounded-button text-white font-semibold whitespace-nowrap transition-all hover:scale-105 active:scale-95">
+      Send Message
+    </button>
+  </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark border-t border-purple-500/20 py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="font-['Pacifico'] text-2xl text-primary mb-4">RB</div>
+          <p class="text-gray-400 mb-4">Revolutionizing business through AI-driven intelligence and automation solutions.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary/20 rounded-lg flex items-center justify-center cursor-pointer transition-colors hover:scale-110">
+              <i class="ri-twitter-line text-gray-400"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary/20 rounded-lg flex items-center justify-center cursor-pointer transition-colors hover:scale-110">
+              <i class="ri-linkedin-line text-gray-400"></i>
+            </a>
+            <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-primary/20 rounded-lg flex items-center justify-center cursor-pointer transition-colors hover:scale-110">
+              <i class="ri-github-line text-gray-400"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Solutions</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Smart Automation</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Predictive Analytics</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Computer Vision</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Natural Language Processing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Company</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">About Us</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Careers</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Blog</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-4">Contact Info</h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-3">
+              <i class="ri-mail-line text-primary"></i>
+              <span class="text-gray-400">rohitbisht1233@gmail.com</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="ri-phone-line text-primary"></i>
+              <span class="text-gray-400">+91 6398720297</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <i class="ri-map-pin-line text-primary"></i>
+              <span class="text-gray-400">Delhi, India</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-purple-500/20 mt-8 pt-8 text-center">
+        <p class="text-gray-400">&copy; 2024 RB AI Solutions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- JavaScript for Thank You Popup -->
+  <script>
+    const form = document.getElementById("contactForm");
+    const thankyouBox = document.getElementById("thankyouBox");
+
+    form.addEventListener("submit", function () {
+      // Popup after short delay
+      setTimeout(() => {
+        thankyouBox.classList.remove("hidden");
+        setTimeout(() => {
+          thankyouBox.classList.add("hidden");
+        }, 4000);
+      }, 500);
+    });
+  </script>
+  <script>
+    // GSAP Animations
+    document.addEventListener('DOMContentLoaded', function() {
+      // Register ScrollTrigger plugin
+      gsap.registerPlugin(ScrollTrigger);
+      
+      // Hero text animation
+      gsap.from('nav', {
+        opacity: 0,
+        y: -20,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+      
+      gsap.from('h1 span, h1 br', {
+        opacity: 0,
+        y: 30,
+        stagger: 0.1,
+        duration: 0.8,
+        delay: 0.3,
+        ease: 'power2.out'
+      });
+      
+      gsap.from('section:first-of-type p, section:first-of-type div', {
+        opacity: 0,
+        y: 20,
+        stagger: 0.1,
+        duration: 0.6,
+        delay: 0.8,
+        ease: 'power2.out'
+      });
+      
+      // Feature cards animation
+      gsap.utils.toArray('.feature-card').forEach((card, i) => {
+        gsap.from(card, {
+          opacity: 0,
+          y: 50,
+          duration: 0.6,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          },
+          delay: i * 0.1
+        });
+      });
+      
+      // Infinite scroller animation
+      const scroller = document.querySelector('.scroller');
+      if (scroller) {
+        const scrollerContent = scroller.querySelector('div');
+        const scrollerContentWidth = scrollerContent.scrollWidth;
+        
+        gsap.to(scrollerContent, {
+          x: -scrollerContentWidth / 2,
+          duration: 30,
+          ease: 'none',
+          repeat: -1
+        });
+      }
+      
+      // Section animations
+      gsap.utils.toArray('section').forEach((section, i) => {
+        if (i > 0) { // Skip first section (hero)
+          gsap.from(section, {
+            opacity: 0,
+            y: 50,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 80%',
+              toggleActions: 'play none none none'
+            }
+          });
+        }
+      });
+      
+      // Button hover animations
+      document.querySelectorAll('button, a').forEach(button => {
+        button.addEventListener('mouseenter', () => {
+          gsap.to(button, {
+            scale: 1.05,
+            duration: 0.2,
+            ease: 'power2.out'
+          });
+        });
+        
+        button.addEventListener('mouseleave', () => {
+          gsap.to(button, {
+            scale: 1,
+            duration: 0.2,
+            ease: 'power2.out'
+          });
+        });
+        
+        button.addEventListener('mousedown', () => {
+          gsap.to(button, {
+            scale: 0.95,
+            duration: 0.1,
+            ease: 'power2.out'
+          });
+        });
+        
+        button.addEventListener('mouseup', () => {
+          gsap.to(button, {
+            scale: 1.05,
+            duration: 0.1,
+            ease: 'power2.out'
+          });
+        });
+      });
+      
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            gsap.to(window, {
+              duration: 1,
+              scrollTo: {
+                y: targetElement,
+                offsetY: 80
+              },
+              ease: 'power2.inOut'
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
