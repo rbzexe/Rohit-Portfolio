@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -23,6 +23,7 @@
     color: white;
     perspective: 1000px;
     transform-style: preserve-3d;
+    overflow-x: hidden;
   }
   .glow-border { 
     box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); 
@@ -67,7 +68,7 @@
   }
   .feature-card:hover {
     transform: translateY(-5px) translateZ(20px);
-    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);
+    box-shadow: 极 15px 30px rgba(139, 92, 246, 0.3);
     border-color: rgba(139, 92, 246, 0.5);
   }
   .scroll-hidden {
@@ -123,7 +124,7 @@
   
   .three-d-card {
     transform: translateZ(10px);
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    transition: transform 0.5s ease, box-shadow 极.5s ease;
   }
   
   .three-d-card:hover {
@@ -143,9 +144,9 @@
       0 1px 3px rgba(0,0,0,.3), 
       0 3px 5px rgba(0,0,0,.2), 
       0 5px 10px rgba(0,0,0,.25), 
-      0 10px 10px rgba(0,0,0,.2), 
+      0 10px 极0px rgba(0,0,0,.2), 
       0 20px 20px rgba(0,0,0,.15),
-      0 0 20px rgba(139, 92, 246, 0.5);
+      0 0 20极 px rgba(139, 92, 246, 0.5);
   }
   
   .particle {
@@ -207,9 +208,306 @@
     z-index: -2;
     opacity: 0.05;
   }
+  
+  /* New Styles for Enhanced UI */
+  .slide-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+  }
+  
+  .slide-in.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+  }
+  
+  .fade-in.active {
+    opacity: 1;
+  }
+  
+  .typewriter {
+    overflow: hidden;
+    border-right: 0.15em solid #8b5cf6;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #8b5cf6; }
+  }
+  
+  .chatbot-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+  }
+  
+  .chatbot-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #8b5cf6, #a855f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+    transition: all 0.3s ease;
+  }
+  
+  .chatbot-button:hover {
+    transform: scale(1.1) rotate(10deg);
+  }
+  
+  .chatbot-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 350px;
+    height: 450px;
+    background: rgba(20, 20, 30, 0.95);
+    border-radius: 15px;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .chatbot-window.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
+  
+  .chat-header {
+    padding: 15px;
+    background: rgba(35, 15, 60, 0.7);
+    border-bottom: 1px solid rgba(139极, 92, 246, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .message {
+    padding: 10px 15px;
+    border-radius: 18px;
+    max-width: 80%;
+    animation: messageIn 0.3s ease-out;
+  }
+  
+  @keyframes messageIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .bot-message {
+    background: rgba(139, 92, 246, 0.2);
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+  }
+  
+  .user-message {
+    background: rgba(139, 92, 246, 0.4);
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .chat-input {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid rgba(139, 92, 246, 0.3);
+    background: rgba(20, 20, 30, 0.8);
+  }
+  
+  .chat-input input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 20px;
+    background: rgba(30, 30, 40, 0.8);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: white;
+    outline: none;
+  }
+  
+  .chat-input button {
+    margin-left: 10px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #8b5cf6, #a855f7);
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .chat-input button:hover {
+    transform: scale(1.05);
+  }
+  
+  .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #8b5cf6, #a855f7);
+    margin: 0 auto 20px;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .avatar::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.2), transparent);
+    transform: rotate(45deg);
+  }
+  
+  .flip-card {
+    perspective: 1000px;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+  
+  .testimonial-slider {
+    overflow: hidden;
+    position: relative;
+    height: 300px;
+  }
+  
+  .testimonial-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .testimonial {
+    min-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .progress-bar {
+    height: 4px;
+    background: rgba(139, 92, 246, 0.3);
+    width: 100%;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  
+  .progress {
+    height: 100%;
+    background: linear-gradient(90deg, #8b5cf6, #a855f7);
+    width: 0%;
+    transition: width 5s linear;
+  }
+  
+  .cursor-follower {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(139, 92, 246, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: width 0.3s, height 0.3s, background 0.3s;
+  }
+  
+  .cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: #8b5cf6;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: transform 0.1s;
+  }
+  
+  .cursor-follower.hover {
+    width: 60px;
+    height: 60px;
+    background: rgba(139, 92, 246, 0.1);
+  }
+  
+  .cursor-dot.hover {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
 </style>
 </head>
 <body class="overflow-x-hidden">
+  <!-- Custom Cursor -->
+  <div class="cursor-follower"></div>
+  <div class="cursor-dot"></div>
+  
   <!-- 3D Background Scene -->
   <div id="scene" class="scene"></div>
   <canvas id="matrixRain" class="matrix-rain"></canvas>
@@ -218,6 +516,38 @@
   <div class="glow-orb bg-purple-600 w-80 h-80 -top-40 -left-40"></div>
   <div class="glow-orb bg-blue-500 w-64 h-64 bottom-0 right-0"></div>
   <div class="glow-orb bg-indigo-600 w-96 h-96 -bottom-48 left-1/4"></div>
+
+  <!-- AI Chatbot -->
+  <div class="极chatbot-container">
+    <div class="chatbot-window" id="chatbotWindow">
+      <div class="chat-header">
+        <div class="flex items-center">
+          <div class="w-8 h-8 rounded-full bg-purple-600 mr-2"></div>
+          <div>
+            <h4 class="font-semibold">AI Assistant</h4>
+            <p class="text-xs text-purple-300">Online</p>
+          </div>
+        </div>
+        <button id="closeChat" class="text-gray-400 hover:text-white">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot-message">
+          Hello! I'm your AI assistant. How can I help you today?
+        </div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button id="sendMessage">
+          <i class="ri-send-plane-line"></i>
+        </button>
+      </div>
+    </div>
+    <div class="chatbot-button pulse" id="chatbotButton">
+      <i class="ri-robot-line text-white text-2xl"></i>
+    </div>
+  </div>
 
   <!-- Navigation -->
   <nav class="w-full bg-dark/90 backdrop-blur-sm border-b border-purple-500/20 fixed top-0 z-50 hover-3d">
@@ -228,7 +558,7 @@
         <a href="#features" class="text-gray-300 hover:text-primary transition-colors nav-link parallax-element">Features</a>
         <a href="#solutions" class="text-gray-300 hover:text-primary transition-colors nav-link parallax-element">Solutions</a>
         <a href="#about" class="text-gray-300 hover:text-primary transition-colors nav-link parallax-element">About</a>
-        <a href="#contact" class="text-gray-300 hover:text-primary transition-colors nav-link parallax-element">Contact</a>
+        <a href="#contact" class="text-gray-300 hover:text-primary transition-colors nav极-link parallax-element">Contact</a>
       </div> 
       <button class="bg-primary hover:bg-purple-600 px-6 py-2 !rounded-button text-white font-medium whitespace-nowrap transition-all hover:scale-105 active:scale-95 glow-effect pulse">
         Learning
@@ -237,7 +567,7 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20" id="home">
+  <section class="relative min极-h-screen flex items-center justify-center overflow-hidden pt-20" id="home">
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0 bg-[url('download.jpg')] bg-cover bg-center opacity-90"></div>
       <div class="absolute inset-0 hero-gradient"></div>
@@ -247,18 +577,18 @@
     <div class="relative z-10 w-full max-w-7xl mx-auto px-6 py-20">
       <div class="max-w-2xl parallax-element" data-depth="0.1">
         <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight text-3d">
-          <span class="gradient-text">Revolutionize</span> Your<br>
+          <span class="gradient-text typewriter">Revolutionize</span> Your<br>
           Business with <span class="gradient-text">AI-Driven</span><br>
           Intelligence
         </h1>
-        <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+        <p class="text-xl text-gray-300 mb-8 leading-relaxed fade-in">
           Our powerful AI tools help automate tasks, extract insights, and scale your operations—faster than ever.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 mb-12">
+        <div class="flex flex-col sm:flex-row gap-4 mb-12 slide-in">
           <a href="#project" class="bg-primary hover:bg-purple-600 px-8 py-4 !rounded-button text-white font-semibold whitespace-nowrap transition-all pulse-glow hover:scale-105 active:scale-95 glow-effect three-d-card">
             Explore Projects
           </a>
-          <a href="https://drive.google.com/file/d/1uQoOMKqHXN-ontu513PoPaOVJmEiklnH/view?usp=drive_link" class="border-2 border-primary hover:bg-primary/10 px-8 py-4 !rounded-button text-primary font-semibold whitespace-nowrap transition-all flex items-center gap-2 hover:scale-105 active:scale-95 glow-effect three-d-card">
+          <a href="https://drive.google.com/file/d/1uQoOMKqHXN-ontu513PoPaOVJmEikln极H/view?usp=drive_link" class="border-2 border-primary hover:bg-primary/10 px-8 py-4 !rounded-button text-primary font-semibold whitespace-nowrap transition-all flex items-center gap-2 hover:scale-105 active:scale-95 glow-effect three-d-card">
             Download CV
             <div class="w-5 h-5 flex items-center justify-center">
               <i class="ri-download-line"></i>
@@ -278,7 +608,7 @@
             <span class="text-sm font-medium whitespace-nowrap">Real-Time Insight</span>
           </div>
           <div class="flex items-center gap-3 px-6">
-            <div class="w-6 h-6 flex items-center justify-center">
+            <div class="w-6极 h-6 flex items-center justify-center">
               <i class="ri-line-chart-line text-primary"></i>
             </div>
             <span class="text-sm font-medium whitespace-nowrap">Predictive Power</span>
@@ -297,7 +627,7 @@
           </div>
           <div class="flex items-center gap-3 px-6">
             <div class="w-6 h-6 flex items-center justify-center">
-              <i class="ri-chat-3-line text-primary"></i>
+              <极i class="ri-chat-3-line text-primary"></i>
             </div>
             <span class="text-sm font-medium whitespace-nowarp">Human-Like Chat</span>
           </div>
@@ -335,11 +665,11 @@
   <section id="features" class="py-20 bg-dark">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16 parallax-element" data-depth="0.2">
-        <h2 class="text-4xl font-bold mb-4">AI Solutions Tailored for <span class="gradient-text">Real-World Impact</span></h2>
-        <div class="w-24 h-1 bg-gradient-to-r from-primary to-purple-400 mx-auto"></div>
+        <h2 class="text-4xl font-bold mb-4 slide-in">AI Solutions Tailored for <span class="gradient-text">Real-World Impact</span></h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-primary to-purple-400 mx-auto slide-in"></div>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="feature-card p-8 rounded-xl glow-border group three-d-card">
+        <div class="feature-card p-8 rounded-xl glow-border group three-d-card slide-in">
           <div class="w-16 h-16 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <div class="w-8 h-8 flex items-center justify-center">
               <i class="ri-settings-3-line text-white text-xl"></i>
@@ -348,16 +678,16 @@
           <h3 class="text-xl font-semibold mb-4 text-primary">Smart Automation</h3>
           <p class="text-gray-400 leading-relaxed">Streamline workflows with intelligent automation that adapts to your business processes and executes operations.</p>
         </div>
-        <div class="feature-card p-8 rounded-xl glow-border group three-d-card">
-          <div class="w-16 h-16 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+        <div class="feature-card p-8 rounded-xl glow-border group three-d-card slide-in">
+          <div class="w-16 h-16 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-6 group极-hover:scale-110 transition-transform">
             <div class="w-8 h-8 flex items-center justify-center">
-              <i class="ri-eye-line text-white text-xl"></i>
+              <i class="极ri-eye-line text-white text-xl"></i>
             </div>
           </div>
-          <h3 class="text-xl font-semibold mb-4 text-primary">Predictive Insights</h3>
+          <h3 class="text-xl font-semibold mb-4 text-primary">Predictive Insights</极h3>
           <p class="text-gray-400 leading-relaxed">Leverage machine learning to predict outcomes and optimize decisions with data-driven insights.</p>
         </div>
-        <div class="feature-card p-8 rounded-xl glow-border group three-d-card">
+        <div class="feature-card p-8 rounded-xl glow-border group three-d-card slide-in">
           <div class="w-16 h-16 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <div class="w-8 h-8 flex items-center justify-center">
               <i class="ri-chat-4-line text-white text-xl"></i>
@@ -366,13 +696,13 @@
           <h3 class="text-xl font-semibold mb-4 text-primary">Conversational AI</h3>
           <p class="text-gray-400 leading-relaxed">Deploy human-like interactions across channels and support customers with natural language processing.</p>
         </div>
-        <div class="feature-card p-8 rounded-xl glow-border group three-d-card">
+        <div class="feature-card p-8 rounded-xl glow-border group three-d-card slide-in">
           <div class="w-16 h-16 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
             <div class="w-8 h-8 flex items-center justify-center">
               <i class="ri-shield-star-line text-white text-xl"></i>
-            </div>
+            </极div>
           </div>
-          <h3 class="text-xl font-semibold mb-4 text-primary">Enterprise-Grade Security</h3>
+          <h3 class="text-xl font-semib极old mb-4 text-primary">Enterprise-Grade Security</h3>
           <p class="text-gray-400 leading-relaxed">Ensure complete data protection with secure algorithms and compliance-ready processes.</p>
         </div>
       </div>
@@ -384,7 +714,7 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <div class="relative parallax-element" data-depth="0.3">
-          <div class="relative w-full h-96 rounded-2xl overflow-hidden three-d-card">
+          <div class="relative w-full h-96 rounded-2xl overflow-hidden three-d-card slide-in">
             <img src="download (2).jpg" 
                  alt="AI Solutions" 
                  class="w-full h-full object-cover">
@@ -402,13 +732,13 @@
           </div>
         </div>
         <div class="parallax-element" data-depth="0.1">
-          <div class="text-sm text-primary font-semibold mb-4 uppercase tracking-wider">What We Do</div>
-          <h2 class="text-4xl font-bold mb-6">Future-ready AI for today's challenges.</h2>
-          <p class="text-gray-400 text-lg leading-relaxed mb-8">
+          <div class="text-sm text-primary font-semibold mb-4 uppercase tracking-wider slide-in">What We Do</div>
+          <h2 class="text-4xl font-bold mb-6 slide-in">Future-ready AI for today's challenges.</h2>
+          <p class="text-gray-400 text-lg leading-relaxed mb-8 slide-in">
             We specialize in creating adaptive and scalable AI solutions that address complex business challenges. Whether it's automating repetitive tasks, extracting insights from data, or building intelligent systems, we deliver measurable impact now.
           </p>
           <div class="grid grid-cols-2 gap-6 mb-8">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 slide-in">
               <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                 <div class="w-4 h-4 flex items-center justify-center">
                   <i class="ri-check-line text-white text-sm"></i>
@@ -416,7 +746,7 @@
               </div>
               <span class="font-medium">Computer Vision</span>
             </div>
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 slide-in">
               <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                 <div class="w-4 h-4 flex items-center justify-center">
                   <i class="ri-check-line text-white text-sm"></i>
@@ -424,7 +754,7 @@
               </div>
               <span class="font-medium">AI Integration</span>
             </div>
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 slide-in">
               <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                 <div class="w-4 h-4 flex items-center justify-center">
                   <i class="ri-check-line text-white text-sm"></i>
@@ -432,15 +762,15 @@
               </div>
               <span class="font-medium">AI Strategy</span>
             </div>
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 slide-in">
               <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                <div class="w-4 h-4 flex items-center justify-center">
+                <div class="w-4极 h-4 flex items-center justify-center">
                   <i class="ri-check-line text-white text-sm"></i>
                 </div>
               </div>
               <span class="font-medium">Ongoing Support</span>
             </div>
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 slide-in">
               <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
                 <div class="w-4 h-4 flex items-center justify-center">
                   <i class="ri-check-line text-white text-sm"></i>
@@ -449,7 +779,7 @@
               <span class="font-medium">Custom AI Development</span>
             </div>
           </div>
-          <a href="#contact" class="bg-primary hover:bg-purple-600 px-8 py-4 !rounded-button text-white font-semibold whitespace-nowrap transition-all pulse-glow hover:scale-105 active:scale-95 glow-effect three-d-card">
+          <a href="#contact" class="bg-primary hover:bg-purple-600 px-8 py-4 !rounded-button text-white font-semibold whitespace-nowrap transition-all pulse-glow hover:scale-105 active:scale-95 glow-effect three-d-card slide-in">
             Contact Us
           </a>
         </div>
@@ -461,28 +791,28 @@
   <section id="about" class="py-20 bg-dark/50">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16 parallax-element" data-depth="0.2">
-        <div class="text-sm text-primary font-semibold mb-4 uppercase tracking-wider">About Us</div>
-        <h2 class="text-4xl font-bold mb-6">Empowering Businesses with <span class="gradient-text">Smart, Scalable AI</span></h2>
-        <p class="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto">
+        <div class="text-sm text-primary font-semibold mb-4 uppercase tracking-wider slide-in">About Us</div>
+        <h2 class="text-4xl font-bold mb-6 slide-in">Empowering Businesses with <span class="gradient-text">Smart, Scalable AI</span></h2>
+        <p class="text-gray-400 text-lg leading-relaxed max-w-3xl mx-auto slide-in">
           We are a cutting-edge AI service provider dedicated to transforming businesses through intelligent automation, data-driven insights, and scalable machine learning solutions.
         </p>
       </div>
       <div class="grid md:grid-cols-3 gap-8 mb-16">
         <div class="text-center parallax-element" data-depth="0.1">
-          <div class="text-5xl font-bold text-primary mb-2 neon-text">500+</div>
-          <div class="text-gray-400">Hours saved via automation</div>
+          <div class="text-5xl font-bold text-primary mb-2 neon-text slide-in">500+</div>
+          <div class="text-gray-400 slide-in">Hours saved via automation</div>
         </div>
         <div class="text-center parallax-element" data-depth="0.2">
-          <div class="text-5xl font-bold text-primary mb-2 neon-text">100% Automation</div>
-          <div class="text-gray-400">AI projects delivered</div>
+          <div class="text-5xl font-bold text-primary mb-2 neon-text slide-in">100% Automation</div>
+          <div class="text-gray-400 slide-in">AI projects delivered</div>
         </div>
         <div id="project" class="text-center parallax-element" data-depth="0.1">
-          <div class="text-5xl font-bold text-primary mb-2 neon-text">100%</div>
-          <div class="text-gray-400">Secured Ai Projects</div>
+          <div class="text-5xl font-bold text-primary mb-2 neon-text slide-in">100%</div>
+          <div class="text-gray-400 slide-in">Secured Ai Projects</div>
         </div>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="feature-card p-6 rounded-xl three-d-card">
+        <div class="feature-card p-6 rounded-xl three-d-card slide-in">
           <div class="w-12 h-12 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-4">
             <div class="w-6 h-6 flex items-center justify-center">
               <i class="ri-shirt-line text-white"></i>
@@ -491,7 +821,7 @@
           <h3 class="font-semibold mb-2 text-primary">Attire Detection</h3>
           <p class="text-gray-400 text-sm">Advanced deep learning models for real-time clothing and uniform recognition systems.</p>
         </div>
-        <div class="feature-card p-6 rounded-xl three-d-card">
+        <div class="feature-card p-6 rounded-xl three-d-card slide-in">
           <div class="w-12 h-12 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-4">
             <div class="w-6 h-6 flex items-center justify-center">
               <i class="ri-map-pin-line text-white"></i>
@@ -500,17 +830,17 @@
           <h3 class="font-semibold mb-2 text-primary">Geolocation Mapping</h3>
           <p class="text-gray-400 text-sm">Mapping Excel sheet data onto real-time geolocation maps with intelligent visualization.</p>
         </div>
-        <div class="feature-card p-6 rounded-xl three-d-card">
+        <div class="feature-card p-6 rounded-xl three-d-card slide-in">
           <div class="w-12 h-12 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-4">
             <div class="w-6 h-6 flex items-center justify-center">
-              <i class="ri-robot-line text-white"></i>
+              <i class="ri-robot-line text-white"></极i>
             </div>
           </div>
           <h3 class="font-semibold mb-2 text-primary">Automation Bots</h3>
           <p class="text-gray-400 text-sm">Building intelligent automation bots for complex data processing and workflow tasks.</p>
         </div>
-        <div class="feature-card p-6 rounded-xl three-d-card">
-          <div class="w-12 h-12 bg-gradient-to-br from-primary to-purple-400 rounded-lg flex items-center justify-center mb-4">
+        <div class="feature-card p-6 rounded-xl three-d-card slide-in">
+          <div class="w-12 h-12 bg-gradient-to-b极r from-primary to-purple-400 rounded-lg flex items-center justify-center mb-4">
             <div class="w-6 h-6 flex items-center justify-center">
               <i class="ri-code-line text-white"></i>
             </div>
@@ -520,9 +850,84 @@
         </div>
       </div>
       <div class="text-center mt-12">
-        <button class="bg-primary hover:bg-purple-600 px-8 py-4 !rounded-button text-white font-semibold whitespace-nowrap transition-all pulse-glow hover:scale-105 active:scale-95 glow-effect three-d-card">
+        <button class="bg-primary hover:bg-purple-600 px-8 py-4 !rounded-button text-white font-semibold whitespace-nowrap transition-all pulse-glow hover:scale-105 active:scale-95 glow-effect three-d-card slide-in">
           Learn More
         </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-20 bg-gradient-to-b from-[#0a0a12] to-dark">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-6 slide-in">What Our <span class="gradient-text">Clients Say</span></h2>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto slide-in">Hear from businesses that have transformed their operations with our AI solutions.</p>
+      </div>
+      
+      <div class="testimonial-slider">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial">
+            <div class="bg-dark/50 border border-purple-500/20 rounded-xl p-8 glow-border three-d-card">
+              <div class="flex items-center mb-6">
+                <div class="avatar"></div>
+                <div class="ml-4">
+                  <h4 class="font-semibold">Sarah Johnson</h4>
+                  <p class="text-purple-400">CTO, TechInnovate</p>
+                </div>
+              </div>
+              <p class="text-gray-300">"The AI automation system reduced our processing time by 70%. The team at RB delivered exactly what we needed and provided excellent support throughout the implementation."</p>
+              <div class="flex mt-4">
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-fill text-yellow-400"></i>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="bg-dark/50 border border-purple-500/20 rounded-xl p-8 glow-border three-d-card">
+              <div class="flex items-center mb-6">
+                <div class="avatar"></div>
+                <div class="ml-4">
+                  <h4 class="font-semibold">Michael Chen</h4>
+                  <p class="text-purple-400">Data Director, GlobalCorp</p>
+                </div>
+              </div>
+              <p class="text-gray-300">"The predictive analytics solution has been a game-changer for our business. We're now able to forecast trends with 95% accuracy, giving us a significant competitive advantage."</p>
+              <div class="flex mt-4">
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-half-fill text-yellow-400"></i>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial">
+            <div class="bg-dark/50 border border-purple-500/20 rounded-xl p-8 glow-border three-d-card">
+              <极div class="flex items-center mb-6">
+                <div class="avatar"></div>
+                <div class="ml-4">
+                  <h4 class="font-semibold">Emma Rodriguez</h4>
+                  <p class="text-purple-400">Operations Manager, RetailPlus</p>
+                </div>
+              </div>
+              <p class="text-gray-300">"The computer vision system for attire detection has dramatically improved our compliance monitoring. It's accurate, fast, and seamlessly integrated with our existing systems."</p>
+              <div class="flex mt-4">
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-fill text-yellow-400"></i>
+                <i class="ri-star-fill text-yellow-400"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress" id="testimonialProgress"></div>
       </div>
     </div>
   </section>
@@ -532,12 +937,12 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid lg:grid-cols-2 gap-16 items-center">
         <div class="parallax-element" data-depth="0.1">
-          <h2 class="text-4xl font-bold mb-6">Ready to <span class="gradient-text">Transform</span> Your Business?</h2>
-          <p class="text-gray-400 text-lg leading-relaxed mb-8">
+          <h2 class="text-4xl font-bold mb-6 slide-in">Ready to <span class="gradient-text">Transform</span> Your Business?</h2>
+          <p class="text-gray-400 text-lg leading-relaxed mb-8 slide-in">
             Get in touch with our team to discuss how our AI solutions can help you achieve your business goals.
           </p>
           <div class="space-y-6">
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 slide-in">
               <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
                 <i class="ri-mail-line text-primary text-xl"></i>
               </div>
@@ -546,18 +951,18 @@
                 <a href="mailto:rohitbisht1233@gmail.com" class="font-medium hover:text-primary transition-colors">rohitbisht1233@gmail.com</a>
               </div>
             </div>
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 slide-in">
               <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
                 <i class="ri-phone-line text-primary text-xl"></i>
               </div>
               <div>
-                <h4 class="text-gray-400 text-sm">Phone</h4>
+                <h4 class="text-gray-400极 text-sm">Phone</h4>
                 <a href="tel:+916398720297" class="font-medium hover:text-primary transition-colors">+91 6398720297</a>
               </div>
             </div>
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-4 slide-in">
               <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
-                <i class="ri-map-pin-line text-primary text-xl"></i>
+                <i class="ri-map-pin-line text-primary text-xl"></极i>
               </div>
               <div>
                 <h4 class="text-gray-400 text-sm">Location</h4>
@@ -566,7 +971,7 @@
             </div>
           </div>
         </div>
-        <div class="bg-dark/50 border border-purple-500/20 rounded-xl p-8 glow-border three-d-card">
+        <div class="bg-dark/50 border border-purple-500/20 rounded-xl p-8 glow-border three-d-card slide-in">
           <h3 class="text-2xl font-bold mb-6">Send us a message</h3>
           <!-- Thank You Message (hidden by default) -->
           <div id="thankyouBox" class="fixed top-5 right-5 bg-purple-700 text-white px-6 py-4 rounded-lg shadow-lg hidden">
@@ -591,7 +996,7 @@
             </div>
 
             <div>
-              <label for="subject" class="block text-gray-400 mb-2">Subject</label>
+              <label for="subject" class="block text-gray-极400 mb-2">Subject</label>
               <input type="text" id="subject" name="subject" required class="w-full bg-dark/50 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors">
             </div>
 
@@ -639,7 +1044,7 @@
         </div>
         <div>
           <h3 class="font-semibold mb-4">Company</h3>
-          <ul class="space-y-2">
+          <ul class="space极-y-2">
             <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">About Us</a></li>
             <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Careers</a></li>
             <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">Blog</a></li>
@@ -647,14 +1052,14 @@
           </ul>
         </div>
         <div>
-          <h3 class="font-semibold mb-4">Contact Info</h3>
+          <h3 class="font-semibold mb-4">Contact Info</极h3>
           <div class="space-y-2">
             <div class="flex items-center gap-3">
               <i class="ri-mail-line text-primary"></i>
               <span class="text-gray-400">rohitbisht1233@gmail.com</span>
             </div>
             <div class="flex items-center gap-3">
-              <i class="ri-phone-line text-primary"></i>
+              <i class="极ri-phone-line text-primary"></i>
               <span class="text-gray-400">+91 6398720297</span>
             </div>
             <div class="flex items-center gap-3">
@@ -711,7 +1116,7 @@
       
       const drops = [];
       for(let i = 0; i < columns; i++) {
-        drops[i] = 1;
+        drops[i极] = 1;
       }
       
       function draw() {
@@ -753,6 +1158,146 @@
       });
     }
     
+    // Custom cursor effect
+    function setupCustomCursor() {
+      const cursorFollower = document.querySelector('.cursor-follower');
+      const cursorDot = document.querySelector('.cursor-dot');
+      
+      document.addEventListener('mousemove', (e) => {
+        cursorFollower.style.left = `${e.clientX}px`;
+        cursorFollower.style.top = `${e.clientY}px`;
+        cursorDot.style.left = `${e.clientX}px`;
+        cursorDot.style.top = `${e.clientY}px`;
+      });
+      
+      // Add hover effects
+      const hoverElements = document.querySelectorAll('a, button, .feature-card, .three-d-card');
+      
+      hoverElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorFollower.classList.add('hover');
+          cursorDot.classList.add('hover');
+        });
+        
+        el.addEventListener('mouseleave', () => {
+          cursorFollower.classList.remove('hover');
+          cursorDot.classList.remove('hover');
+        });
+      });
+    }
+    
+    // Chatbot functionality
+    function setupChatbot() {
+      const chatbotButton = document.getElementById('chatbotButton');
+      const chatbotWindow = document.getElementById('chatbotWindow');
+      const closeChat = document.getElementById('closeChat');
+      const sendMessage = document.getElementById('sendMessage');
+      const userInput = document.getElementById('userInput');
+      const chatMessages = document.getElementById('chatMessages');
+      
+      chatbotButton.addEventListener('click', () => {
+        chatbotWindow.classList.toggle('active');
+      });
+      
+      closeChat.addEventListener('click', () => {
+        chatbotWindow.classList.remove('active');
+      });
+      
+      function addMessage(text, isUser = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+      
+      function getBotResponse(input) {
+        input = input.toLowerCase();
+        
+        if (input.includes('hello') || input.includes('hi') || input.includes('hey')) {
+          return "Hello there! How can I assist you today?";
+        } else if (input.includes('service') || input.includes('offer')) {
+          return "We offer AI solutions including computer vision, predictive analytics, automation, and custom AI development. Is there a specific area you're interested in?";
+        } else if (input.includes('contact') || input.includes('email') || input.includes('phone')) {
+          return "You can reach us at rohitbisht1233@gmail.com or +91 6398720297. Would you like me to help you with anything else?";
+        } else if (input.includes('project') || input.includes('work')) {
+          return "We've worked on projects involving attire detection, geolocation mapping, automation bots, and more. Check out our portfolio section for details!";
+        } else if (input.includes('bye') || input.includes('goodbye') || input.includes('see you')) {
+          return "Thank you for chatting! Feel free to reach out anytime. Have a great day!";
+        } else {
+          return "I'm still learning about that. Could you please contact us directly at rohitbisht1233@gmail.com for more specific information?";
+        }
+      }
+      
+      sendMessage.addEventListener('click', () => {
+        const message = userInput.value.trim();
+        if (message) {
+          addMessage(message, true);
+          userInput.value = '';
+          
+          // Simulate typing delay
+          setTimeout(() => {
+            const response = getBotResponse(message);
+            addMessage(response);
+          }, 1000);
+        }
+      });
+      
+      userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          sendMessage.click();
+        }
+      });
+    }
+    
+    // Testimonial slider
+    function setupTestimonialSlider() {
+      const track = document.getElementById('testimonialTrack');
+      const progress = document.getElementById('testimonialProgress');
+      const testimonials = document.querySelectorAll('.testimonial');
+      let currentIndex = 0;
+      
+      function moveToSlide(index) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        progress.style.width = '0%';
+        progress.style.transition = 'width 5s linear';
+        progress.style.width = '100%';
+        currentIndex = index;
+      }
+      
+      // Auto-advance slides
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % testimonials.length;
+        moveToSlide(currentIndex);
+      }, 5000);
+      
+      // Initialize progress bar
+      progress.style.width = '100%';
+    }
+    
+    // Scroll animations
+    function setupScrollAnimations() {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all elements with animation classes
+      document.querySelectorAll('.slide-in, .fade-in').forEach(el => {
+        observer.observe(el);
+      });
+    }
+    
     // Enhanced GSAP Animations
     document.addEventListener('DOMContentLoaded', function() {
       // Register ScrollTrigger plugin
@@ -762,6 +1307,10 @@
       createParticles();
       setupMatrixRain();
       setupParallax();
+      setupCustomCursor();
+      setupChatbot();
+      setupTestimonialSlider();
+      setupScrollAnimations();
       
       // Hero text animation
       gsap.from('nav', {
@@ -930,4 +1479,3 @@
   </script>
 </body>
 </html>
-
